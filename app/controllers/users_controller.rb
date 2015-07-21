@@ -10,8 +10,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.create user_params
-    redirect_to root_path
+    signup = User.create user_params
+    if signup
+      flash[:success] = "Account Created"
+      session[:user_id] = signup.id
+      redirect_to posts_path
+    else
+      flash[:danger] = "Please provide valid a valid email, username (twenty characters or less), and password."
+      redirect_to login_path
+    end
   end
 
   private

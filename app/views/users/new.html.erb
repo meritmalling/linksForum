@@ -1,4 +1,7 @@
-<p>To create an account please use provide your email, username, and passowrd.</p>
+<p>To create an account please use provide a valid email, username (less than twenty characters), and passowrd.</p
+
+<%= render "partials/flash" %>
+
 <%= form_for :user do |f| %>
   <%= f.text_field :email, placeholder: "email" %>
   <%= f.text_field :name, placeholder: "username" %>

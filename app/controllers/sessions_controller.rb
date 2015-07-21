@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       #render json: params
       flash[:success] = "Logged In"
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to posts_path
     else
       flash[:danger] = "Incorrect email or password."
       redirect_to login_path
