@@ -1,0 +1,7 @@
+<p>New Link</p>
+
+<%= form_for :post do |f| %>
+  <%= f.text_field :title, placeholder: "title" %>
+  <%= f.text_field :link, placeholder: "link"%>
+  <%= f.submit "Post Link"%>
+<% end %>

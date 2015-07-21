@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def is_authenticated
     unless @current_user
-      flash[:danger] = 'Please log in to LinkLab.'
+      flash[:danger] = 'Please login to LinkLab.'
       redirect_to login_path
     end
   end

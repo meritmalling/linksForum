@@ -1,0 +1,7 @@
+<p>To create an account please use provide your email, username, and passowrd.</p>
+<%= form_for :user do |f| %>
+  <%= f.text_field :email, placeholder: "email" %>
+  <%= f.text_field :name, placeholder: "username" %>
+  <%= f.password_field :password, placeholder: "password"%>
+  <%= f.submit "Sign Up"%>
+<% end %>
