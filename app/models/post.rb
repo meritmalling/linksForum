@@ -8,4 +8,11 @@ class Post < ActiveRecord::Base
   validates :link,
   presence: true
 
+  belongs_to :user
+  has_many :votes, as: :votable
+
+def post_author user
+  user && user.id == self.user.id
+end
+
 end

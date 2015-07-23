@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  before_action :is_authenticated, except: [:new, :index]
-
   def index
   end
 
@@ -10,13 +8,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    signup = User.create user_params
-    if signup
-      flash[:success] = "Account Created"
-      session[:user_id] = signup.id
-      redirect_to posts_path
+    @user = User.create user_params
+    if @user.errors.any?
+      flash[:danger] = "Please provide valid a valid email, username
+      (twenty characters or less), and password."
+      redirect_to signup_path
     else
-      flash[:danger] = "Please provide valid a valid email, username (twenty characters or less), and password."
+      flash[:success] = "Account Created"
       redirect_to login_path
     end
   end
@@ -28,6 +26,4 @@ class UsersController < ApplicationController
   end
 
 end
-
-
 

@@ -1,10 +1,10 @@
-<p>To create an account please use provide a valid email, username (less than twenty characters), and passowrd.</p
+<p>To create an account please use provide a valid email, username (less than twenty characters), and passowrd.</p>
 
 <%= render "partials/flash" %>
 
-<%= form_for :user do |f| %>
-  <%= f.text_field :email, placeholder: "email" %>
-  <%= f.text_field :name, placeholder: "username" %>
-  <%= f.password_field :password, placeholder: "password"%>
+<%= bootstrap_form_for @user do |f| %>
+  <%= f.text_field :email %>
+  <%= f.text_field :name  %>
+  <%= f.password_field :password %>
   <%= f.submit "Sign Up"%>
 <% end %>

@@ -1,6 +1,34 @@
-
-<ul>
-  <% @posts.each do |post| %>
-    <li><%= post.title %> | <%= post.link %> <%= post.user.name %></li>
-  <% end %>
-</ul>
+<h1>
+  <%= link_to '', postnew_path, :class=>'btn btn-success glyphicon glyphicon-plus pull-right', :data => {toggle: 'modal', target: '#myModal'}  %>
+</h1>
+<div class="row">
+  <div class="col-md-10">
+    <table class="table task-table">
+      <tbody>
+        <% @posts.each do |p| %>
+          <tr>
+            <td>
+              <%= bootstrap_form_for [p,Vote.new] do |f| %>
+                <%= f.button "", value: 'up', class: 'btn btn-primary btn-xs glyphicon glyphicon-chevron-up' %><br>
+                <%= f.button "", value: 'down', class: 'btn btn-primary btn-xs glyphicon glyphicon-chevron-down'%>
+              <% end %>
+            </td>
+            <td><%= p.votes.reduce(0){ |sum,v| sum + v.value} %></td>
+            <td><%= p.title %></td>
+            <td><%= p.link %></td>
+            <td><%= p.user.name %></td>
+            <% if p.post_author @current_user %>
+            <td><%= link_to '', edit_post_path(p), :class=>'btn glyphicon glyphicon-pencil pull-right', :data => {toggle: 'modal', target: '#myModal'}  %></td>
+            <td><%= link_to '', p, method: :delete, :class=>'btn glyphicon glyphicon-trash pull-right' %></td>
+            <% end %>
+           </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
