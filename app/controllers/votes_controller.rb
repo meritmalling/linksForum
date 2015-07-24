@@ -16,6 +16,6 @@ class VotesController < ApplicationController
       my_vote.value = vote_value
       my_vote.save
     end
-    redirect_to root_path
+    redirect_to posts_path
   end
 end
